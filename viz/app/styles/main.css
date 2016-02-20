@@ -31,11 +31,22 @@ body {
   border-top: 1px solid #e5e5e5;
 }
 
+.slider-label {
+  font-weight: bold;
+  color:#55637d;
+}
+
+.slider-desc {
+  padding-left: 5px;
+  font-weight:lighter;
+  color:#777;
+}
+
 .grid {
   position:relative
 }
 
-.grid-item { width: 200px; height:200px; overflow: hidden; }
+.grid-item { width: 200px; height:200px; overflow: hidden; padding:5px;}
 
 .grid-item-height { height:200px;}
 .grid-item-height2 { height:400px;}

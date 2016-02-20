@@ -10,12 +10,11 @@
 angular.module('vizApp')
   .controller('MainCtrl', function($scope, dataService, $log) {
 
-
     var allData = [];
 
     $scope.slider = {
-      min: 0.1,
-      max: 1,
+      min: 0,
+      max: 0.1,
       options: {
         floor: 0,
         ceil: 32,
@@ -43,6 +42,4 @@ angular.module('vizApp')
         });
       }
     });
-
-
   });

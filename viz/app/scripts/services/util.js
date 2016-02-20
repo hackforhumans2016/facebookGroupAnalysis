@@ -13,20 +13,24 @@ angular.module('vizApp')
     return {
       onlyInA: function(a, b) {
         var c = [];
-        for (var i = 0; i < a.length; i++) {
-          var objA = a[i];
-          var isInB = false;
-          for(var j = 0; j < b.length; j++) {
-            var objB = b[j];
-            if(objA.id === objB.id) {
-              isInB = true;
-              break;
+
+        if (a && b) {
+          for (var i = 0; i < a.length; i++) {
+            var objA = a[i];
+            var isInB = false;
+            for (var j = 0; j < b.length; j++) {
+              var objB = b[j];
+              if (objA.id === objB.id) {
+                isInB = true;
+                break;
+              }
+            }
+            if (!isInB) {
+              c.push(objA);
             }
           }
-          if(!isInB) {
-            c.push(objA);
-          }
         }
+
         return c;
       }
     };

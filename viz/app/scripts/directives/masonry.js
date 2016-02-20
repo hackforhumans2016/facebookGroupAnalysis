@@ -9,7 +9,7 @@
 angular.module('vizApp')
   .directive('masonry', function($timeout, $document, $log, colWidth, $compile, util) {
     return {
-      templateUrl: 'scripts/directives/masonry.html',
+      template: '<div class="grid"></div>',
       restrict: 'E',
       replace: true,
       scope: {
@@ -22,7 +22,7 @@ angular.module('vizApp')
         scope.$watchCollection('data', function(newCollection, oldCollection) {
 
           if (grid && newCollection) {
-            
+
             var appendObjects = util.onlyInA(newCollection, oldCollection);
             var removeObjects = util.onlyInA(oldCollection, newCollection);
 
