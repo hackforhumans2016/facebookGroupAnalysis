@@ -9,6 +9,8 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.decomposition import PCA
 import pandas as pd
+import datetime
+import scipy
 
 
 df = pd.read_json( open('../data/content.json', 'r'))
