@@ -31,11 +31,25 @@ body {
   border-top: 1px solid #e5e5e5;
 }
 
-.grid-item { width: 200px;}
+.grid {
+  position:relative
+}
+
+.grid-item { width: 200px; height:200px; overflow: hidden; }
+
+.grid-item-height { height:200px;}
+.grid-item-height2 { height:400px;}
+.grid-item-height3 { height: 600px;}
+.grid-item-height4 { height: 800px;}
+
+.grid-item-width { width:200px;}
+.grid-item-width2 { width:400px;}
+.grid-item-width3 { width: 600px;}
+.grid-item-width4 { width: 800px;}
 
 
 /* Responsive: Portrait tablets and up */
-@media screen and (min-width: 768px) {
+@media screen and (max-width: 768px) {
   .container {
     max-width: 730px;
   }

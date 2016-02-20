@@ -13,7 +13,8 @@ angular
     'ngAnimate',
     'ngResource',
     'ngRoute',
-    'ngTouch'
+    'ngTouch',
+    'rzModule'
   ])
   .config(function ($routeProvider) {
     $routeProvider

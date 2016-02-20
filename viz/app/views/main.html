@@ -1,3 +1,4 @@
-<div class="grid">
-    <img ng-repeat="object in data" class="grid-item" ng-src="{{object.full_picture}}" alt="" />
+<div>
+  <rzslider rz-slider-model="slider.min" rz-slider-high="slider.max" rz-slider-options="slider.options"></rzslider>
 </div>
+<masonry data="data"></masonry>
