@@ -7,7 +7,7 @@ Created on Sat Feb 20 15:01:52 2016
 
 import matplotlib.pyplot as plt
 import seaborn as sns
-import json
+from sklearn.decomposition import PCA
 import pandas as pd
 
 
@@ -15,3 +15,8 @@ df = pd.read_json( open('../data/content.json', 'r'))
 
 
 sns.pairplot(df)
+
+pca = PCA()
+zscored = scipy.stats.mstats.zscore(df.loc[:,["comments","likes","shares"]])
+pca.fit(zscored)
+pca.components_
