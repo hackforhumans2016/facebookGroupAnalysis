@@ -1,0 +1,101 @@
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/mathjs/2.7.0/math.min.js"></script>
+</head>
+
+<script>
+
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '508385019364150',
+      xfbml      : true,
+      version    : 'v2.5'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+   
+   
+   //var group_id = "508035479308296" //"SyrianHomeBerlin"
+   var name = "syrianHomeBerlin"
+		
+   
+   var data = [];
+   var likesList = [];
+   var commentsList = [];
+   var sharesList = [];
+   var i = 0;
+	var nP = 2;
+
+   var getPosts = function(resp){
+			for (element in resp.data){
+			    
+				var post = resp.data[element]
+				
+
+				//console.log(post.id + ": " +post.message); 
+				if ("full_picture" in post){
+					data.push({
+						"id": post.id,
+						"message": (("message" in post) ? post.message : ""),
+						"likes": (("likes" in post) ? post.likes.summary.total_count : 0),
+						"shares": (("shares" in post) ? post.shares.count : 0),
+						"comments": (("comments" in post) ? post.comments.summary.total_count : 0),
+
+						"full_picture": post.full_picture,
+						"date": post.create_time
+					});
+						
+					likesList.push(("likes" in post) ? post.likes.summary.total_count : 0);
+					sharesList.push(("shares" in post) ? post.shares.count : 0);
+					commentsList.push(("comments" in post) ? post.comments.summary.total_count : 0);
+					//console.log(data[data.length-1])	;
+				}
+			}
+			var lSD = math.std(likesList);
+			var cSD = math.std(commentsList);
+			var sSD = math.std(sharesList);
+			
+			
+			//console.log([lSD,cSD,sSD])
+			var weights = [.64, .52, .56];
+			
+			var normVal = math.max(likesList)/lSD*weights[0]+
+					math.max(commentsList)/cSD*weights[1] +
+					math.max(sharesList)/sSD*weights[2] 
+
+					
+			for (element in data){
+				data[element]["score"] = (weights[0]*data[element]["likes"]/lSD+
+										 weights[1]*data[element]["comments"]/cSD+
+										 weights[2]*data[element]["shares"]/sSD)/normVal;
+			}
+		  
+		  
+			// if we want more elements, call it again
+			if(i < nPage){
+			  nextPage = resp.paging.next;        
+			  console.log(nextPage);
+			  i++;
+			  $.getJSON(nextPage, getPosts)
+			 
+		  }
+		  console.log(data)	 
+	}
+	var make_fb_call = function(group_id,nP){
+		nPage = nP
+		var url ="https://graph.facebook.com/"+group_id+"/feed?fields=id,message,full_picture,shares,created_time,likes.limit(0).summary(true),comments.limit(0).summary(true)&access_token=508385019364150|OsA40FhehthBOWMySxJCyBCcsdU"
+		$.getJSON(url,getPosts)
+	}
+	
+	make_fb_call("542747389189895",7)
+	console.log(data)
+
+
+</script>
