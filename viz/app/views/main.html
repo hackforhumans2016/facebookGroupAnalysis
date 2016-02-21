@@ -1,6 +1,23 @@
+<div class="hfh-input-container">
+  <span class="hfh-label">Dataset</span><span class="hfh-desc">, that is the name of a Facebook group</span>
+   <select class="form-control" ng-model="selectedDataset" ng-change="getData(selectedDataset.path)"
+   ng-options="dataset.label for dataset in datasets track by dataset.id">
+   </select>
+</div>
 
-<div>
-  <span class="slider-label">Select a score</span><span class="slider-desc">higher values indicate more engagement</span>
+<div class="hfh-input-container">
+   <span class="hfh-desc">There are </span><span class="hfh-label"> {{data.length}} pictures </span><span class="hfh-desc"> in your current selection, use slider to manipulate</span>
+</div>
+
+<div class="hfh-input-container">
+  <span class="hfh-label">Select a score</span><span class="hfh-desc">, higher values indicate more engagement</span>
   <rzslider rz-slider-model="slider.min" rz-slider-high="slider.max" rz-slider-options="slider.options"></rzslider>
 </div>
+
 <masonry data="data"></masonry>
+<!--hfh-image-grid data="data"></hfh-image-grid-->
+<!--div masonry column-width="200">
+    <div class="masonry-brick grid-item"  ng-repeat="imageObject in data">
+        <img  ng-src="{{ imageObject.full_picture }}" alt="A masonry brick">
+    </div>
+</div-->
