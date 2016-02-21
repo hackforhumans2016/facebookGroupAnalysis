@@ -4,7 +4,7 @@
 The viz-visualization shows the facebook-pictures scaled by popularity (a mix between nComments, nLikes and nShares). This allows for exploration of the discussions of refugees even without understanding of the arabic language.
 Code is available to do this online, so to display the live feed.
 
-
+Demo: http://www.benediktehinger.de/hackforhumans
 ## JSON format for visualisation
 The python scripts output a simplified JSON version of the facebook api JSON.
 The format is as follows
