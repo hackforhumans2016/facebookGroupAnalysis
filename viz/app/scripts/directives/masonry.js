@@ -19,6 +19,19 @@ angular.module('vizApp')
 
         var grid;
 
+        $(document).ready(function() {
+          $(document).tooltip({
+            items: "[data-message]",
+            content: function() {
+              var element = $(this);
+              if (element.is("[data-message]")) {
+                var message = element.data('message');
+                return message;
+              }
+            }
+          });
+        });
+
         scope.$watchCollection('data', function(newCollection, oldCollection) {
 
           if (grid && newCollection) {
@@ -33,6 +46,7 @@ angular.module('vizApp')
               var img = $("<img src=\"" + object.full_picture + "\"/>");
               img.css(object.img.style);
               elem.append(img);
+              elem.attr('data-message', object.message);
               grid.masonry()
                 .append(elem)
                 .masonry('appended', elem)
@@ -47,7 +61,7 @@ angular.module('vizApp')
               return document.getElementById(i);
             });
 
-            if(nodes) {
+            if (nodes) {
               grid.masonry('remove', nodes);
               grid.masonry();
             }
@@ -56,29 +70,17 @@ angular.module('vizApp')
 
         $document.ready(function() {
           $timeout(function() {
-            //var elem = document.querySelector('.grid');
             grid = $('.grid').masonry({
               // options
               itemSelector: '.grid-item',
               columnWidth: colWidth
             });
 
-
             var onLayout = function() {
               console.log('layout done');
             };
             // bind event listener
             grid.on('layoutComplete', onLayout);
-
-            /*grid.imagesLoaded().progress(function() {
-              grid.masonry({
-                // options
-                itemSelector: '.grid-item',
-                columnWidth: 200
-              });
-              $log.log('Constructing');
-            });*/
-
           });
         });
       }

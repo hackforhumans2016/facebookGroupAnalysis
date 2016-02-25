@@ -37,6 +37,8 @@ module.exports = function(config) {
       'bower_components/imagesloaded/imagesloaded.js',
       'bower_components/jquery-bridget/jquery-bridget.js',
       'bower_components/angular-masonry/angular-masonry.js',
+      'bower_components/mathjs/dist/math.min.js',
+      'bower_components/jquery-ui/jquery-ui.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',
