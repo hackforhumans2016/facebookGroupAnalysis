@@ -1,3 +1,14 @@
+@font-face {
+    font-family: Ostrich Sans;
+    src: url(/fonts/ostrich-regular.ttf);
+  }
+
+  h1 {
+    font-size: 64px;
+    font-family: "Ostrich Sans", sans-serif;
+    text-transform: uppercase;
+  }
+
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
@@ -30,6 +41,7 @@ body {
   color: #777;
   border-top: 1px solid #e5e5e5;
 }
+
 
 
 .hfh-grid-container {

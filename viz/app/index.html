@@ -5,81 +5,58 @@
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <!-- build:css(.) styles/vendor.css -->
-    <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
-    <link rel="stylesheet" href="bower_components/angularjs-slider/dist/rzslider.css" />
-    <!-- endbower -->
-    <link rel="stylesheet" href="bower_components/jquery-ui/themes/base/jquery-ui.min.css" />
-    <!-- endbuild -->
-    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/bootstrap.min.css"/>
+    <link rel="stylesheet" href="styles/rzslider.css"/>
+    <link rel="stylesheet" href="styles/jquery-ui.min.css"/>
     <link rel="stylesheet" href="styles/main.css">
-    <!-- endbuild -->
   </head>
   <body ng-app="vizApp">
-      <!--div class="navbar navbar-default" role="navigation">
-        <div class="container">
-          <div class="navbar-header">
-
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-
-            <a class="navbar-brand" href="#/">Visualise Refugees' Digital Life</a>
-          </div>
-
-          <div class="collapse navbar-collapse" id="js-navbar-collapse">
-
-            <ul class="nav navbar-nav">
-              <li class="active"><a href="#/">Home</a></li>
-              <li><a ng-href="#/">Contact</a></li>
-            </ul>
-          </div>
+    <div class="container" ng-controller="MainCtrl">
+      <h1>What does refugee digital live look like?</h1>
+      <div>
+        <div class="hfh-input-container">
+          <span class="hfh-label">Dataset</span>
+          <span class="hfh-desc">, that is the name of a Facebook group</span>
+          <select class="form-control" ng-model="selectedDataset" ng-change="getData(selectedDataset.path)" ng-options="dataset.label for dataset in datasets track by dataset.id"></select>
         </div>
-      </div-->
-    <div class="container">
-        <h1>What does refugee digital live look like?</h1>
-        <div ng-view=""></div>
-    </div>
 
-    <div class="footer">
+        <div class="hfh-input-container">
+          <span class="hfh-desc">There are
+          </span>
+          <span class="hfh-label">
+            {{data.length}}
+            pictures
+          </span>
+          <span class="hfh-desc">
+            in your current selection, use slider to manipulate</span>
+        </div>
+
+        <div class="hfh-input-container">
+          <span class="hfh-label">Select a score</span>
+          <span class="hfh-desc">, higher values indicate more engagement</span>
+          <rzslider rz-slider-model="slider.min" rz-slider-high="slider.max" rz-slider-options="slider.options"></rzslider>
+        </div>
+      </div>
+      <masonry data="data"></masonry>
       <div class="container">
-        <p>This application was created during the <a href="https://hackforhumans.wordpress.com/">HackForHumans</a> Hackathon in Osnabrück January 2016</p>
+        <p>This application was created during the
+          <a href="https://hackforhumans.wordpress.com/">HackForHumans</a>
+          Hackathon in Osnabrück January 2016</p>
       </div>
     </div>
 
+    <script src="scripts/lib/jquery.min.js"></script>
+    <script src="scripts/lib/bootstrap.min.js"></script>
+    <script src="scripts/lib/angular.min.js"></script>
+    <script src="scripts/lib/rzslider.min.js"></script>
 
-    <!-- build:js(.) scripts/vendor.js -->
-    <!-- bower:js -->
-    <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-animate/angular-animate.js"></script>
-    <script src="bower_components/angular-resource/angular-resource.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
-    <script src="bower_components/angular-touch/angular-touch.js"></script>
-    <script src="bower_components/angularjs-slider/dist/rzslider.js"></script>
-  
-    <script src="bower_components/mathjs/dist/math.min.js"></script>
-    <script src="bower_components/jquery-ui/jquery-ui.js"></script>
-    <!-- endbower -->
+    <script src="scripts/lib/math.min.js"></script>
+    <script src="scripts/lib/jquery-ui.min.js"></script>
+
     <script src="scripts/lib/imagesloaded.pkgd.min.js"></script>
     <script src="scripts/lib/masonry.pkgd.min.js"></script>
-    <!-- endbuild -->
 
-        <!-- build:js({.tmp,app}) scripts/scripts.js -->
-        <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/services/dataservice.js"></script>
-        <script src="scripts/directives/masonry.js"></script>
-        <script src="scripts/directives/masonryimage.js"></script>
-        <script src="scripts/services/colwidth.js"></script>
-        <script src="scripts/services/util.js"></script>
-        <script src="scripts/directives/hfh-image-grid.js"></script>
-        <!-- endbuild -->
-</body>
+    <script src="scripts/app.js"></script>
+
+  </body>
 </html>

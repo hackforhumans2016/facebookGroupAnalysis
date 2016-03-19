@@ -115,6 +115,13 @@ module.exports = function (grunt) {
           open: true,
           base: '<%= yeoman.dist %>'
         }
+      },
+      simple: {
+        options: {
+          keepalive: true,
+          open: true,
+          base: 'app'
+        }
       }
     },
 
@@ -480,4 +487,8 @@ module.exports = function (grunt) {
     'test',
     'build'
   ]);
+
+  grunt.registerTask('simple', [
+    'connect:simple'
+  ])
 };
